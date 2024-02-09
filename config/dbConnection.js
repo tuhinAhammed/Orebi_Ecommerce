@@ -9,4 +9,17 @@ function dbConnection(){
     mongoose.connect('mongodb+srv://orebiecommerce:8SEoZCn89QvYOAXt@tuhinahammed.dkanykh.mongodb.net/orebiEcom?retryWrites=true&w=majority').then(() => console.log("connected"))
 }
 module.exports = dbConnection
+
+// {
+//     "firstName" : "" ,
+//     "lastName"  : "Ahammed" ,
+//     "email"     : "tuhinahambhed2030@gmail.com" ,
+//     "telephone" : "2441139" ,
+//     "address"   : "mohammadpur-1007" ,
+//     "city"      : "dhaka" ,
+//     "postCode"  : "1007" ,
+//     "division"  : "Dhaka" ,
+//     "district"  : "jessore" ,
+//     "password"  : "123zxc"
+// }
                                 

@@ -27,12 +27,10 @@ const userSchema = new Schema({
         rewuired : true
     } ,
     postCode : {
-        type : String ,
-        required : true
+        type : String 
     } ,
     division : {
-        type : String ,
-        requiored : true
+        type : String 
     },
     district : {
         type : String ,
