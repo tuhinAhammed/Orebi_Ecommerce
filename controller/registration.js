@@ -1,6 +1,10 @@
 const userList = require("../model/userSchema")
 const bcrypt = require('bcrypt');
-const emailVarification = require("../helper/sendEmail");
+const emailVarificationMail = require("../helper/sendEmail");
+const emailValidation = require ("../helper/emailValidation");
+const emailSendTemplate = require("../helper/emailSendTemplate");
+const jwt = require('jsonwebtoken');
+
 const saltRounds = 10;
 const password = 's0/\/\P4$$w0rD';
 async function registration(req, res) {
@@ -32,6 +36,9 @@ async function registration(req, res) {
             error: "Email is Required"
         })
     }
+    if(!emailValidation (email)){
+        return res.json({error : "Email Is Not Valid"})
+    }
     if (!district) {
         return res.send({
             error: "District is Required"
@@ -60,7 +67,8 @@ async function registration(req, res) {
             district,
             password: hash
         })
-        emailVarification(email)
+        var token = jwt.sign({ email }, 'tuhin_dev');
+        emailVarificationMail(email , emailSendTemplate(token))
         console.log(users)
         users.save()
         res.send(users)

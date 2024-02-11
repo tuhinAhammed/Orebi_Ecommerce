@@ -39,6 +39,10 @@ const userSchema = new Schema({
     password : {
         type : String ,
         required : true
+    },
+    varified : {
+        type : Boolean ,
+        default : false
     }
 })
 
