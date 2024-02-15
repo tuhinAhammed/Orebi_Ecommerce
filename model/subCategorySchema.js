@@ -13,7 +13,7 @@ const  subCategoryList = new Schema({
         type : Boolean ,
         default : false
     } ,
-    status : {
+    Status : {
         type : String ,
         default : "waiting" ,
         enum : ["waiting" , "approved" , "rejected"]
