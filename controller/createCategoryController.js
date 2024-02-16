@@ -102,4 +102,4 @@ async function getSubCategory(req ,res){
     res.json(data)
 }
 
-module.exports = {createCategoryController,statusCategoryController ,createSubCategoryController ,statusSubCategoryController , getCategory , getSubCategory}
+module.exports = {createCategoryController,statusCategoryController ,createSubCategoryController ,statusSubCategoryController , getCategory , getSubCategory}  

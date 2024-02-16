@@ -43,6 +43,11 @@ const userSchema = new Schema({
     varified : {
         type : Boolean ,
         default : false
+    } ,
+    role :{
+        type : String ,
+        default : "member" ,
+        enum : ["merchant" , "admin" , "member"]
     }
 })
 
