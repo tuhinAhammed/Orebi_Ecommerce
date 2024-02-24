@@ -2,7 +2,7 @@ const mongoose = require("mongoose") ;
 const {Schema} = mongoose ;
 
 
-const productList = new Schema ({
+const productSchema = new Schema ({
     name : {
         type : String ,
         Required : true
@@ -11,5 +11,28 @@ const productList = new Schema ({
         type : String ,
         required : true
     } ,
-    
+    image : {
+        type : String ,
+        
+    },
+    variants : [
+        {
+            type : Schema.Types.ObjectId ,
+            ref : "variants"
+        }
+    ] ,
+    store : {
+        type : Schema.Types.ObjectId ,
+        ref : "merchantList"
+    } ,
+    created : {
+        type : Date ,
+        default : new Date
+    },
+    updated : {
+        type : Date ,
+        default : new Date
+    }
 })
+
+module.exports = mongoose.model("productList" , productSchema)
