@@ -12,3 +12,5 @@ app.get("/" , (req , res) => {
 app.listen(port , () =>{
     console.log(`This Port Is Run From  ${port}`);
 })
+const path = require('path')
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))

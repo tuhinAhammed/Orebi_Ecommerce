@@ -42,29 +42,30 @@ function createProductController(req ,res){
     })
 }
 async function createVariantController(req ,res){
-    const {name , description , price , color , size , ram , rom , storage , quantity , product} = req.body ;
+    const {name , description , price , image , color , size , ram , rom , storage , quantity , product} = req.body ;
+    console.log(req.file.filename)
+    const variants = new variantList({
+        name ,
+        image : `http://localhost:4000/uploads/${req.file.filename}` ,
+        description ,
+        color , 
+        size ,
+        ram , 
+        rom , 
+        storage ,
+        price ,
+        quantity ,
+        product
+    })
+    variants.save();
 
-    // const variants = new variantList({
-    //     name ,
-    //     description ,
-    //     color , 
-    //     size ,
-    //     ram , 
-    //     rom , 
-    //     storage ,
-    //     price ,
-    //     quantity ,
-    //     product
-    // })
-    // variants.save()
-    // await productList.findOneAndUpdate(
-    //     {_id : variants.product} ,
-    //     {$push : {variants : variants._id}} ,
-    //     {new : true}
-    // )
-    // res.send({
-    //     success : "Product Variant Is Created"
-    // })
+    await productList.findOneAndUpdate(
+        {_id : variants.product} ,
+        {$push : {variants : variants._id}} ,
+        {new : true}
+    )
+    const data = await variantList.find({})
+    res.json(data)
 }
 async function getProduct (req, res){
     const getProductData = await productList.find({}).populate("variants")
