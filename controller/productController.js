@@ -68,12 +68,17 @@ async function createVariantController(req ,res){
     res.json(data)
 }
 async function getProduct (req, res){
-    const getProductData = await productList.find({}).populate("variants")
-    res.json(getProductData)
-
+    const getProductData = await productList.find({}).populate("store")
+    res.send(getProductData)
 }
+
+async function productDeleteController(req ,res){
+    const deleteData = await productList.findByIdAndDelete(req.body.demo)
+    res.send(deleteData)
+}
+
 async function getVariants(req , res){
    const variantsListData = await variantList.find({})
    res.json(variantsListData)
 }
-module.exports = {createProductSecurity , createProductController , createVariantController , getProduct ,getVariants}
+module.exports = {createProductSecurity , createProductController , createVariantController , getProduct ,getVariants , productDeleteController}

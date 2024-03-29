@@ -22,4 +22,6 @@ module.exports = dbConnection
 //     "district"  : "jessore" ,
 //     "password"  : "123zxc"
 // }
-                                
+ 
+// Jadabpur , Post Code- 7340 , Moheshpur , Jhenaidah
+// spelling mistake
