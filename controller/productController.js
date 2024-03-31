@@ -43,19 +43,20 @@ function createProductController(req ,res){
 }
 async function createVariantController(req ,res){
     const {name , description , price , image , color , size , ram , rom , storage , quantity , product} = req.body ;
-    console.log(req.file.filename)
+    // console.log(req.file.filename)
     const variants = new variantList({
         name ,
         image : `http://localhost:4000/uploads/${req.file.filename}` ,
         description ,
+        product ,
         color , 
         size ,
         ram , 
         rom , 
         storage ,
         price ,
-        quantity ,
-        product
+        quantity 
+        
     })
     variants.save();
 
@@ -78,7 +79,11 @@ async function productDeleteController(req ,res){
 }
 
 async function getVariants(req , res){
-   const variantsListData = await variantList.find({})
-   res.json(variantsListData)
+   const variantsListData = await variantList.find({}).populate("product")
+   res.send(variantsListData)
 }
-module.exports = {createProductSecurity , createProductController , createVariantController , getProduct ,getVariants , productDeleteController}
+async function deleteVariantControlller (req , res){
+    const deleteData = await variantList.findOneAndDelete(req.body.data)
+    res.send(deleteData)
+}
+module.exports = {createProductSecurity , createProductController , createVariantController , getProduct ,getVariants , productDeleteController , deleteVariantControlller}
