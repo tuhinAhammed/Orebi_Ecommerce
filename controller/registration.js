@@ -39,11 +39,7 @@ async function registration(req, res) {
     if(!emailValidation (email)){
         return res.json({error : "Email Is Not Valid"})
     }
-    if (!district) {
-        return res.send({
-            error: "District is Required"
-        })
-    }
+
     if (!password) {
         return res.send({
             error: "Password Is Required"
@@ -69,9 +65,12 @@ async function registration(req, res) {
         })
         var token = jwt.sign({ email }, 'tuhin_dev');
         emailVarificationMail(email , emailSendTemplate(token))
-        console.log(users)
+        // console.log(users)
         users.save()
-        res.send(users)
+        res.send({
+            success : "Registration Successfully Done , Please Check Your Email For Varification" ,
+            data : users
+        })
     });
 
 }

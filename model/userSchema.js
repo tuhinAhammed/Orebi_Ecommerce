@@ -16,15 +16,12 @@ const userSchema = new Schema({
     },
     telephone : {
         type : String , 
-        required : true
     },
     address :{
         type : String ,
-        required : true
     },
     city : {
         type : String ,
-        rewuired : true
     } ,
     postCode : {
         type : String 
@@ -34,7 +31,6 @@ const userSchema = new Schema({
     },
     district : {
         type : String ,
-        required : true
     } ,
     password : {
         type : String ,
