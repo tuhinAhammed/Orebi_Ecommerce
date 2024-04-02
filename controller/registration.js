@@ -8,18 +8,7 @@ const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 const password = 's0/\/\P4$$w0rD';
 async function registration(req, res) {
-    const {
-        firstName,
-        lastName,
-        email,
-        telephone,
-        address,
-        city,
-        postCode,
-        division,
-        district,
-        password
-    } = req.body;
+    const {firstName,lastName,email,telephone,address,city,postCode,division,district,password} = req.body;
     console.log(req.body);
     if (!firstName) {
         return res.send({
@@ -61,7 +50,8 @@ async function registration(req, res) {
             postCode,
             division,
             district,
-            password: hash
+            password: hash ,
+            token : email
         })
         var token = jwt.sign({ email }, 'tuhin_dev');
         emailVarificationMail(email , emailSendTemplate(token))

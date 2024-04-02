@@ -1,9 +1,10 @@
 const jwt = require("jsonwebtoken")
 const userList = require ("../model/userSchema")
+
 async function emailVarificationController(req ,res){
     const {authorization} = req.headers
     const decoded = jwt.verify(authorization , 'tuhin_dev')
-    //     console.log(decoded) // bar
+        // console.log(decoded , "12") // bar
     // console.log(authorization);
     const varifyConfirm = await userList.findOneAndUpdate(
         {email : decoded.email} ,
@@ -27,5 +28,27 @@ async function emailVarificationController(req ,res){
     // }
     res.send(varifyConfirm);
 }
+ async function verifyUserEmail (req , res){
+    const {demo} = req.params
+    const decoded = jwt.verify(demo , 'tuhin_dev')
+    if (decoded){
+        const varifyConfirm = await userList.findOneAndUpdate(
+            {email : decoded.email} ,
+            {varified : true},
+            {token : "ok"},
+            {new : true} 
+            )
+        res.send({
+            success : "Successfully Varified"
+        })
 
-module.exports = emailVarificationController
+    }
+    else{
+        res.send({
+            error : "Varified Not Success"
+        })
+    }
+    console.log(decoded , "33")
+ }
+
+module.exports = {emailVarificationController , verifyUserEmail }

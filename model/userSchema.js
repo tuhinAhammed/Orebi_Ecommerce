@@ -44,7 +44,11 @@ const userSchema = new Schema({
         type : String ,
         default : "member" ,
         enum : ["merchant" , "admin" , "member"]
+    },
+    token :{
+        type : String
     }
+
 })
 
 module.exports = mongoose.model("userList" , userSchema)
