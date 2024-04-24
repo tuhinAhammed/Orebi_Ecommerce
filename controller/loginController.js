@@ -1,6 +1,7 @@
 const emailValidation = require("../helper/emailValidation");
 const bcrypt = require('bcrypt');
 const userList = require("../model/userSchema")
+
  async function loginController(req ,res){
     const {email , password} = req.body;
     if(!email){
@@ -17,7 +18,11 @@ const userList = require("../model/userSchema")
         if(emailExist.length > 0 ){
             bcrypt.compare(password , emailExist[0].password).then( function(result) {
                 if (result){
-                     res.json({success : "Login Successfully Done"})
+                     res.json({
+                        success : "Login Successfully Done" ,
+                        role : emailExist[0].role ,
+                        email : emailExist[0].email
+                    })
                 }
                 else{
                      res.json({error : "password Is Not Match"})

@@ -38,9 +38,10 @@ async function emailVarificationController(req ,res){
             {token : "ok"},
             {new : true} 
             )
-        res.send({
-            success : "Successfully Varified"
-        })
+            res.redirect("http://localhost:5173/login")
+        // res.send({
+        //     success : "Successfully Varified"
+        // })
 
     }
     else{
