@@ -6,8 +6,18 @@ async function createCategoryController(req, res) {
     const {name,description ,subCategory} = req.body;
     const duplicateCategory = await categoryList.find({name})
     if (duplicateCategory.length > 0) {
-        res.json({
+       return res.json({
             error: "This Category is Already Exist"
+        })
+    }
+    if (!name){
+      return  res.json({
+            error : "Please Enter Category Name"
+        })
+    }
+    if (!description){
+      return  res.json({
+            error : "Please Enter Category Description"
         })
     }
 
@@ -16,10 +26,15 @@ async function createCategoryController(req, res) {
         description ,
         subCategory
     })
-    res.json({
-        succcess: "Category Created Successfully"
-    })
+
+
     category.save()
+    // res.redirect("http://localhost:5173/categoryactivestatus")
+   return res.json({
+ 
+        success: "Category Created Successfully"
+    })
+
 
 }
 async function statusCategoryController(req, res) {
@@ -48,12 +63,12 @@ async function statusCategoryController(req, res) {
 
         const duplicateSubCategory = await subCategoryList.find({name})
         if (duplicateSubCategory.length > 0){
-            res.json({
+          return  res.json({
                 error : "This Category Is Alreay Exist"
             })
         }
         else if(!name || !description){
-            res.json({
+           return res.json({
                 error : "Enter Name & Description to Create Sub Category" 
             }) 
         }
@@ -64,13 +79,18 @@ async function statusCategoryController(req, res) {
         })
         
 
+
         const updateCategory = await categoryList.findOneAndUpdate(
              { _id : subCategory.category} ,
              {$push : {subCategory : subCategory._id}} ,
              {new : true}
             )
-            res.json("Sub Category Created Successfully")
+            
             subCategory.save()
+            return  res.json ({
+              success : "Sub Category Create Successfully Done"
+          })
+
         
 }
 
