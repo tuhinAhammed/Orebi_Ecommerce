@@ -45,7 +45,9 @@ async function statusCategoryController(req, res) {
             {$set : {isActive : false  , Status : Status}} ,
             {new : true}
         )
-        res.json(`Status Updated Successfully done to ${Status}` )
+        return res.json ({
+            success : (`Status Updated Successfully done to ${Status}`)
+        })
     }
     else if(Status == "approved"){
         const statusUpdate = await categoryList.findOneAndUpdate(
@@ -53,7 +55,9 @@ async function statusCategoryController(req, res) {
             {$set :{isActive : true , Status : Status}},
             {new : true}
         )
-        res.json(`Status Updated Successfully done to ${Status}`)
+        return res.json ({
+            success : (`Status Updated Successfully done to ${Status}`)
+        })
     }
 
 }
