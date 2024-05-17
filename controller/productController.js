@@ -43,7 +43,53 @@ function createProductController(req ,res){
 }
 async function createVariantController(req ,res){
     const {name , description , price , image , color , size , ram , rom , storage , quantity , product} = req.body ;
-    // console.log(req.file.filename)
+    console.log(req.file)
+    console.log(req.body);
+    if (!name){
+       return res.json ({
+        error : "Enter Variant Name"
+       })
+    }
+    if (!description){
+       return res.json ({
+        error : "Enter Variant description"
+       })
+    }
+    if (!price){
+       return res.json ({
+        error : "Enter Variant price"
+       })
+    }
+    if (!color){
+       return res.json ({
+        error : "Select a color"
+       })
+    }
+    if (!size){
+       return res.json ({
+        error : "Enter Variant size"
+       })
+    }
+    if (!ram){
+       return res.json ({
+        error : "Enter Variant ram"
+       })
+    }
+    if (!storage){
+       return res.json ({
+        error : "Enter Variant storage"
+       })
+    }
+    if (!quantity){
+       return res.json ({
+        error : "Enter Variant quantity"
+       })
+    }
+    if (!product){
+       return res.json ({
+        error : "Enter Variant Name"
+       })
+    }
     const variants = new variantList({
         name ,
         image : `http://localhost:4000/uploads/${req.file.filename}` ,
