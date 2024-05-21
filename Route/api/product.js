@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage })
 
 // router.post("/createproduct"  , createProductSecurity , createProductController)
-router.post("/createproduct"  ,  createProductController)
+router.post("/createproduct"  , upload.single('image') , createProductController)
 router.post("/createvariants" , upload.single('image') , createVariantController)
 router.get("/getproduct" , getProduct)
 router.post("/deleteproduct" , productDeleteController)

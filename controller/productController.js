@@ -32,8 +32,7 @@ function createProductController(req ,res){
         name ,
         description ,
         store ,
-        image 
-
+        image : `http://localhost:4000/uploads/${req.file.filename}`
     })
     products.save()
     console.log(req.body)
@@ -115,7 +114,7 @@ async function createVariantController(req ,res){
     res.json(data)
 }
 async function getProduct (req, res){
-    const getProductData = await productList.find({}).populate("store")
+    const getProductData = await productList.find({}).populate(["store" , "variants"])
     res.send(getProductData)
 }
 
