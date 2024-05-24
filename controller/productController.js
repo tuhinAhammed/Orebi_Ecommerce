@@ -117,7 +117,7 @@ async function getProduct (req, res){
     const getProductData = await productList.find({}).populate(["store" , "variants"])
     res.send(getProductData)
 }
-// kkkwdqkd
+
 
 async function productDeleteController(req ,res){
     const deleteData = await productList.findByIdAndDelete(req.body.demo)
